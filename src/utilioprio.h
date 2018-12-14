@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_UTIL_IOPRIO_H
-#define BITCOIN_UTIL_IOPRIO_H
+#ifndef BITCOIN_UTILIOPRIO_H
+#define BITCOIN_UTILIOPRIO_H
 
 #if defined(HAVE_CONFIG_H)
 #include <config/bitcoin-config.h>
@@ -60,4 +60,4 @@ bool ioprio_set_file_idle(FILE *);
 #define ioprio_set_file_idle(f)  ((void)false)
 #endif
 
-#endif // BITCOIN_UTIL_IOPRIO_H
+#endif // BITCOIN_UTILIOPRIO_H

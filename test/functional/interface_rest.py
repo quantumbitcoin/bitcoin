@@ -349,8 +349,7 @@ class RESTTest (BitcoinTestFramework):
             self.nodes[2].generate(1)
         self.sync_all()
 
-        json_string = http_get_call(url.hostname, url.port, '/rest/fee/conservative/1.json')
-        json_obj = json.loads(json_string)
+        json_obj = self.test_rest_request('/fee/conservative/1')
         assert_greater_than(float(json_obj["feerate"]), 0)
         assert_greater_than(int(json_obj["blocks"]), 0)
 

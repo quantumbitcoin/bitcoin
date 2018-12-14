@@ -11,9 +11,7 @@ from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import (
     assert_equal,
     connect_nodes_bi,
-    assert_raises_rpc_error,
-    assert_raises_message,
-    JSONRPCException,
+    assert_raises_rpc_error
 )
 
 
@@ -46,7 +44,7 @@ class WalletHDTest(BitcoinTestFramework):
 
         # Exporting the master private key should fail on a non-HD wallet
         # FIXME: No way to make non-HD wallets anymore
-        #assert_raises_message(JSONRPCException, "Wallet is not a HD wallet.", self.nodes[0].dumpmasterprivkey)
+        #assert_raises_rpc_error(-4, "Wallet is not a HD wallet.", self.nodes[0].dumpmasterprivkey)
 
         # Import a non-HD private key in the HD wallet
         non_hd_add = self.nodes[0].getnewaddress()

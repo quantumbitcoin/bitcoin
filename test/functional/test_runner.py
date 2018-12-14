@@ -129,7 +129,7 @@ BASE_SCRIPTS = [
     'rpc_signmessage.py',
     'feature_nulldummy.py',
     'mempool_accept.py',
-    'sort_multisig.py',
+    'rpc_sort_multisig.py',
     'wallet_import_rescan.py',
     'rpc_bind.py --ipv4',
     'rpc_bind.py --ipv6',

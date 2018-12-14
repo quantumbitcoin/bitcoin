@@ -6,15 +6,21 @@
 
 from test_framework.blocktools import create_block, create_coinbase
 from test_framework.test_framework import BitcoinTestFramework
-from test_framework.util import *
+from test_framework.util import (
+    assert_equal,
+    connect_nodes_bi,
+    sync_blocks,
+)
 
 from binascii import a2b_hex, b2a_hex
 from decimal import Decimal
 
 def find_unspent(node, txid, amount):
     for utxo in node.listunspent(0):
-        if utxo['txid'] != txid: continue
-        if utxo['amount'] != amount: continue
+        if utxo['txid'] != txid:
+            continue
+        if utxo['amount'] != amount:
+            continue
         return {'txid': utxo['txid'], 'vout': utxo['vout']}
 
 def solve_template_hex(tmpl, txlist):
@@ -165,7 +171,7 @@ class PriorityTest(BitcoinTestFramework):
 
         txdata_d = node.createrawtransaction([find_unspent(node, txid_c, amt_c)], {node.getnewaddress(): amt_c - fee})
         txdata_d = node.signrawtransactionwithwallet(txdata_d)['hex']
-        txmodsize_d = get_modified_size(node, txdata_d)
+        get_modified_size(node, txdata_d)
         txid_d = node.sendrawtransaction(txdata_d)
         self.sync_all(sync_groups)
 

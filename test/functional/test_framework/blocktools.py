@@ -4,7 +4,7 @@
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Utilities for manipulating blocks and transactions."""
 
-from binascii import a2b_hex, b2a_hex
+from binascii import a2b_hex
 import io
 import struct
 
@@ -53,14 +53,14 @@ def create_block(hashprev=None, coinbase=None, ntime=None, tmpl=None, txlist=Non
     block = CBlock()
     if tmpl:
         block.nVersion = tmpl.get('version', block.nVersion)
-    if not ntime is None:
+    if ntime is not None:
         block.nTime = ntime
     elif tmpl and not tmpl.get('curtime') is None:
         block.nTime = tmpl['curtime']
     else:
         import time
         block.nTime = int(time.time() + 600)
-    if not hashprev is None:
+    if hashprev is not None:
         block.hashPrevBlock = hashprev
     else:
         block.hashPrevBlock = int(tmpl['previousblockhash'], 0x10)
@@ -68,7 +68,7 @@ def create_block(hashprev=None, coinbase=None, ntime=None, tmpl=None, txlist=Non
         block.nBits = struct.unpack('>I', a2b_hex(tmpl['bits']))[0]
     else:
         block.nBits = 0x207fffff  # difficulty retargeting is disabled in REGTEST chainparams
-    if not coinbase is None:
+    if coinbase is not None:
         block.vtx.append(coinbase)
     if txlist:
         for tx in txlist:
